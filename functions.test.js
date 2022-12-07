@@ -3,6 +3,7 @@ import {
   reverseString,
   calculator,
   caesarCipher,
+  analyzeArray,
 } from './functions.js';
 
 test('capitalize string', () => {
@@ -51,9 +52,31 @@ test('calculator multiply', () => {
   expect(isMultiplying).toBe(8);
 });
 
+// caesar
 test('caesar cipher', () => {
   // test for keeping same case
   expect(caesarCipher('abc', 0)).toBe('abc');
 
-  expect(caesarCipher('abc', 1)).toBe('bcd');
+  // Case 1: Positive number, no wrapping
+  expect(caesarCipher('Aiw', 2)).toBe('Cky');
+
+  // Case 2: Positive number, wrapping
+  expect(caesarCipher('ZzB', 2)).toBe('BbD');
+
+  // Case 3: Negative number, no wrapping
+  expect(caesarCipher('Mfr', -2)).toBe('Kdp');
+
+  expect(caesarCipher('Cfr!', -13)).toBe('Pse!');
+});
+
+//
+test('analyze array', () => {
+  const analyzeThiArray = analyzeArray([1, 8, 3, 4, 2, 6]);
+
+  expect(analyzeThiArray).toEqual({
+    average: 4,
+    min: 1,
+    max: 8,
+    theLength: 6,
+  });
 });
